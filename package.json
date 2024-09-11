@@ -1,0 +1,39 @@
+{
+    "name": "nextjs-solana-template",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome": "^1.1.8",
+        "@headlessui/react": "^2.1.6",
+        "@hookform/resolvers": "^3.9.0",
+        "@popperjs/core": "^2.11.8",
+        "@solana/wallet-adapter-base": "^0.9.22",
+        "@solana/wallet-adapter-react": "^0.15.32",
+        "@solana/wallet-adapter-react-ui": "^0.9.31",
+        "@solana/wallet-adapter-wallets": "^0.19.16",
+        "@solana/web3.js": "^1.73.0",
+        "@tailwindcss/forms": "^0.5.9",
+        "@types/jwt-decode": "^2.2.1",
+        "chart.js": "^4.4.4",
+        "jsonwebtoken": "^9.0.2",
+        "jwt-decode": "^4.0.0",
+        "next": "13.4.4",
+        "next-auth": "^4.24.7",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "sweetalert2": "^11.14.0",
+        "yup": "^1.4.0"
+    },
+    "devDependencies": {
+        "@types/node": "20.2.5",
+        "@types/react": "18.2.7",
+        "@types/react-dom": "18.2.4",
+        "typescript": "5.0.4"
+    }
+}
