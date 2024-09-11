@@ -10,13 +10,13 @@ import Swal from "sweetalert2";
 import Auth from "layouts/Auth.js";
 import TableAuth from "layouts/TableAuth";
 
-const LOGIN_API_BASE_URL = "http://localhost:8080/api/v1/auth/authenticate";
+const LOGIN_API_BASE_URL = "https://userapi-git-main-ju3tins-projects.vercel.app/api/auth/signin";
 
 export default function Login() {
   const router = useRouter();
 
   const [state, setState] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -72,15 +72,15 @@ export default function Login() {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Email
+                      Username
                     </label>
                     <input
-                      type="email"
-                      name="email"
+                      type="username"
+                      name="username"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Email"
+                      placeholder="Username"
                       onChange={handleChange}
-                      value={state.email}
+                      value={state.username}
                     />
                   </div>
 

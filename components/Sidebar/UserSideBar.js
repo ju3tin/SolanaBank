@@ -12,8 +12,8 @@ export default function Sidebar() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-  //  const decodedToken = jwt_decode(token);
-  const decodedToken = '0898098908';
+    const decodedToken = jwt_decode(token);
+    //const decodedToken = '0898098908';
     setDecoded(decodedToken);
   }, []);
 

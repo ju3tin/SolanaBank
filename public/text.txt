@@ -1,0 +1,33 @@
+Register your consumer
+Thanks for registering your consumer with the Open Bank Project API! Here is your developer information. Please save it in a secure location.
+
+Please save it in a secure location.
+
+Consumer ID:78d697ab-c6c0-4ef7-b581-3e165504b8b5
+Application Type:Public
+Application Name:freemoney_jjixqribl4
+User redirect URL:http://localhost:8000
+Developer Email:ju3tin95@gmail.com
+App Description:free money
+Client certificate:None
+Consumer Key:khh4k5mvxbqqhxcsdk4c3asmroh2fbfcer2ehjzp
+Consumer Secret:0t404gm5icpnzzc02wb3fs5a0pzbme5iauwvhdgp
+OAuth 1.0a Endpoint:https://apisandbox.openbankproject.com/oauth/initiate
+OAuth 1.0a Documentation:How to use OAuth for OpenBankProject
+Direct Login Endpoint:https://apisandbox.openbankproject.com/my/logins/direct
+Direct Login Documentation:How to use Direct Login
+Please tell us more your Application and / or Startup using this link.
+OAuth2:oauth2.client_id=khh4k5mvxbqqhxcsdk4c3asmroh2fbfcer2ehjzp
+oauth2.redirect_uri=http://localhost:8000
+oauth2.client_scope=ReadAccountsBasic,\
+ReadAccountsDetail,\
+ReadBalances,\
+ReadTransactionsBasic,\
+ReadTransactionsDebits,\
+ReadTransactionsDetail,\
+ReadAccountsBerlinGroup,\
+ReadBalancesBerlinGroup,\
+ReadTransactionsBerlinGroup
+
+oauth2.jws_alg=ES256
+oauth2.jwk_private_key={"kty":"EC","d":"KgPAr4McZofgKRR5BEJPovlYKQ-VVa8izIrca2Kvtak","use":"sig","crv":"P-256","kid":"f3ce9a68-f645-4a10-83d2-c594008e395d","x":"dqCzEnCAUORDAwQGB4huVpwdbSHxvmcLkYSuu8EBZr4","y":"ovSxupvYaUMtzhR36TGvvwKXOpZLmqXGOgEWy3yVzj4","alg":"ES256"}
