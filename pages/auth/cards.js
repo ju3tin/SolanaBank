@@ -1,7 +1,7 @@
 import React from "react";
-import Card from "react-credit-cards";
+//import Card from "react-credit-cards";
 import TokenCheck from "components/TokenCheck";
-import "react-credit-cards/es/styles-compiled.css";
+//import "react-credit-cards/es/styles-compiled.css";
 import jwt_decode from "jwt-decode";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
