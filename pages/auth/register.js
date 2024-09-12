@@ -146,7 +146,7 @@ export default function Register() {
       body: JSON.stringify(user),
   });
 
-  console.log("fu"+response.json());
+  console.log("fu sd"+response.json());
 
     console.log(user);
     if (!response.ok) {
