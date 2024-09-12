@@ -308,7 +308,7 @@ export default function Register() {
                       onChange={(e) => handleChange(e)}
                       name="city"
                     >
-                      <option value="" disabled className="">
+                      <option value="London" disabled className="">
                         City
                       </option>
                       {Array.isArray(cities) && cities.map((city, index) => (
