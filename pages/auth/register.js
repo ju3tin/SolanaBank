@@ -27,7 +27,7 @@ const schema = yup
       .string()
       .email("Please enter a valid e-mail")
       .required("Email is required."),
-    phoneNumber: yup
+    phoneno: yup
       .string()
       .required("Phone number is required")
       .matches(phoneReg, "Phone Number is not valid."),
@@ -60,7 +60,7 @@ export default function Register() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const USER_API_BASE_URL = "https://userapi-git-main-ju3tins-projects.vercel.app/api/auth/signup";
+  const USER_API_BASE_URL = "http://userapi-git-main-ju3tins-projects.vercel.app/api/auth/signup";
 
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({
@@ -68,7 +68,7 @@ export default function Register() {
     account: "",
     sname: "",
     email: "",
-    phoneNumber: "",
+    phoneno: "",
     password: "",
     city: "",
     role: "USER",
@@ -88,15 +88,15 @@ export default function Register() {
 
     // Check email uniqueness
     const emailResponse = await fetch(
-      `http://localhost:8080/api/v1/auth/user/checkEmail?email=${user.email}`
+      `http://userapi-git-main-ju3tins-projects.vercel.app/api/check-email?email=${user.email}`
     );
     const isEmailUnique = await emailResponse.json();
 
     // Check account number uniqueness
     const accountNumberResponse = await fetch(
-      `http://localhost:8080/api/v1/auth/user/checkAccountNumber?account=${user.account}`
+      `http://userapi-git-main-ju3tins-projects.vercel.app/api/check-account?account=${user.account}`
     );
-    const isAccountNumberUnique = await accountResponse.json();
+    const isAccountNumberUnique = await accountNumberResponse.json();;
 
     if (!isAccountNumberUnique && !isEmailUnique) {
       setAccountNumberError("Account number is already in use");
@@ -138,13 +138,26 @@ export default function Register() {
     const response = await fetch(USER_API_BASE_URL, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+          "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
-    });
+  });
+
+  console.log("fu"+response);
+
+    console.log(user);
     if (!response.ok) {
-      throw new Error("Something went wrong");
-    }
+      switch (response.status) {
+          case 400:
+              throw new Error("Bad Request: Please check your input.");
+          case 404:
+              throw new Error("Not Found: The requested resource could not be found.");
+          case 500:
+              throw new Error("Server Error: Please try again later.");
+          default:
+              throw new Error("Something went wrong: " + response.statusText);
+      }
+  }
     const _user = await response.json();
     setUser(_user);
     successfulAlert();
@@ -168,7 +181,7 @@ export default function Register() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-          const response = await fetch('https://userapi-git-main-ju3tins-projects.vercel.app/api/cities');
+          const response = await fetch('http://userapi-git-main-ju3tins-projects.vercel.app/api/cities');
           const data = await response.json();
           setCities(data); // Ensure data is an array
       } catch (error) {
@@ -282,15 +295,15 @@ export default function Register() {
                       Phone number
                     </label>
                     <input
-                      {...register("phoneNumber")}
+                      {...register("phoneno")}
                       type="tel"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="p.s 049-588-814"
-                      value={user.phoneNumber}
+                      value={user.phoneno}
                       onChange={(e) => handleChange(e)}
                     />
                     <small role="alert" className="text-red-500 ">
-                      {errors.phoneNumber?.message}
+                      {errors.phoneno?.message}
                     </small>
                   </div>
                   <div className="relative w-full mb-3">
@@ -308,7 +321,7 @@ export default function Register() {
                       onChange={(e) => handleChange(e)}
                       name="city"
                     >
-                      <option value="London" disabled className="">
+                      <option value="London" className="">
                         City
                       </option>
                       {Array.isArray(cities) && cities.map((city, index) => (
