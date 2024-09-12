@@ -13,6 +13,11 @@ const phoneReg =
 const schema = yup
   .object()
   .shape({
+    username: yup
+      .string()
+      .required("First Name is required.")
+      .min(2, "First name must be longer than 2 characters")
+      .max(50, "First name must be shorter than 30 characters."),
     fname: yup
       .string()
       .required("First Name is required.")
@@ -64,6 +69,7 @@ export default function Register() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({
+    username: "",
     fname: "",
     account: "",
     sname: "",
@@ -152,7 +158,7 @@ export default function Register() {
 
   console.log(shitup);
 
-  console.log("fu sd"+response.json());
+  //console.log("fu sd"+response.json());
 
     console.log(user);
     if (!response.ok) {
@@ -167,7 +173,7 @@ export default function Register() {
               throw new Error("Something went wrong: " + response.statusText);
       }
   }
-    const _user = await response.json();
+    const _user = shitup;
     setUser(_user);
     successfulAlert();
     await router.push("login");
@@ -217,12 +223,35 @@ export default function Register() {
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <form onSubmit={handleSubmit(saveUser)}>
+
+
+                <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Username
+                    </label>
+                    <input
+                      {...register("username")}
+                  
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Username"
+                      value={user.username}
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <small role="alert" className="text-red-500 ">
+                      {errors.username?.message}
+                    </small>
+                  </div>
+                  
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
                     Full Name
                   </label>
+                  
                   <div className="flex w-full  mb-3">
                     <input
                       {...register("fname")}
