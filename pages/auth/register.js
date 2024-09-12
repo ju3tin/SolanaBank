@@ -60,7 +60,7 @@ export default function Register() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const USER_API_BASE_URL = "http://userapi-git-main-ju3tins-projects.vercel.app/api/auth/signup";
+  const USER_API_BASE_URL = "https://userapi-git-main-ju3tins-projects.vercel.app/api/auth/signup";
 
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({
@@ -88,13 +88,13 @@ export default function Register() {
 
     // Check email uniqueness
     const emailResponse = await fetch(
-      `http://userapi-git-main-ju3tins-projects.vercel.app/api/check-email?email=${user.email}`
+      `https://userapi-git-main-ju3tins-projects.vercel.app/api/check-email?email=${user.email}`
     );
     const isEmailUnique = await emailResponse.json();
 
     // Check account number uniqueness
     const accountNumberResponse = await fetch(
-      `http://userapi-git-main-ju3tins-projects.vercel.app/api/check-account?account=${user.account}`
+      `https://userapi-git-main-ju3tins-projects.vercel.app/api/check-account?account=${user.account}`
     );
     const isAccountNumberUnique = await accountNumberResponse.json();;
 
@@ -181,7 +181,7 @@ export default function Register() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-          const response = await fetch('http://userapi-git-main-ju3tins-projects.vercel.app/api/cities');
+          const response = await fetch('https://userapi-git-main-ju3tins-projects.vercel.app/api/cities');
           const data = await response.json();
           setCities(data); // Ensure data is an array
       } catch (error) {
