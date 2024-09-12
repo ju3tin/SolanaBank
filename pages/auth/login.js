@@ -52,7 +52,7 @@ export default function Login() {
     if (res.ok) {
       const json = await res.json();
       successfulAlert();
-      localStorage.setItem("token", json.token);
+      localStorage.setItem("token", json.accessToken);
       router.push("/");
     } else {
       WrongCredentialsAlert();

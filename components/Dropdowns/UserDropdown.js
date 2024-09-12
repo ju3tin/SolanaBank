@@ -14,9 +14,17 @@ const UserDropdown = () => {
   const [decoded, setDecoded] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = 'your_jwt_token_here';
+try {
+    const decoded = jwt_decode(token);
+    console.log(decoded);
+    console.log(token);
     const decodedToken = jwt_decode(token);
     setDecoded(decodedToken);
+} catch (error) {
+    console.error('Failed to decode token:', error);
+}
+   
   }, []);
 
   useEffect(() => {
