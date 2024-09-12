@@ -101,17 +101,17 @@ export default function Register() {
 
     console.log(isAccountNumberUnique);
 
-    if (!isAccountNumberUnique && !isEmailUnique) {
+    if (!isAccountNumberUnique.success && !isEmailUnique.success) {
       setAccountNumberError("Account number is already in use");
       setEmailError("Email is already in use");
       return;
     }
 
-    if (!isAccountNumberUnique) {
+    if (!isAccountNumberUnique.success) {
       setAccountNumberError("Account number is already in use");
       return;
     }
-    if (!isEmailUnique) {
+    if (!isEmailUnique.success) {
       setEmailError("Email is already in use");
       return;
     }
