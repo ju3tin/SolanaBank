@@ -168,23 +168,15 @@ export default function Register() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:8080/api/v1/auth/cities",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const arrOfCities = await response.json();
-        setCities(arrOfCities); // Update the cities array using the useState hook
+          const response = await fetch('https://userapi-git-main-ju3tins-projects.vercel.app/api/cities');
+          const data = await response.json();
+          setCities(data); // Ensure data is an array
       } catch (error) {
-        throw new Error("Oops, fetching went wrong!");
+          console.error('Error fetching cities:', error);
       }
-    };
+  };
 
-    fetchData();
+  fetchData();
   }, []);
 
   return (
@@ -319,11 +311,11 @@ export default function Register() {
                       <option value="" disabled className="">
                         City
                       </option>
-                      {cities.map((city, index) => (
-                        <option key={index} value={city}>
-                          {city}
-                        </option>
-                      ))}
+                      {Array.isArray(cities) && cities.map((city, index) => (
+       <option key={index} value={city}>
+           {city}
+       </option>
+   ))}
                     </select>
                     <small role="alert" className="text-red-500 ">
                       {errors.city?.message}
