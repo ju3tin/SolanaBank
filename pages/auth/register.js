@@ -146,6 +146,12 @@ export default function Register() {
       body: JSON.stringify(user),
   });
 
+
+
+  const shitup = await response.json();;
+
+  console.log(shitup);
+
   console.log("fu sd"+response.json());
 
     console.log(user);
