@@ -92,11 +92,14 @@ export default function Register() {
     );
     const isEmailUnique = await emailResponse.json();
 
+    console.log(isEmailUnique);
     // Check account number uniqueness
     const accountNumberResponse = await fetch(
       `https://userapi-git-main-ju3tins-projects.vercel.app/api/check-account?account=${user.account}`
     );
     const isAccountNumberUnique = await accountNumberResponse.json();;
+
+    console.log(isAccountNumberUnique);
 
     if (!isAccountNumberUnique && !isEmailUnique) {
       setAccountNumberError("Account number is already in use");
