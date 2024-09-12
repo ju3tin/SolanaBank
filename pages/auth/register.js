@@ -13,12 +13,12 @@ const phoneReg =
 const schema = yup
   .object()
   .shape({
-    firstName: yup
+    fname: yup
       .string()
       .required("First Name is required.")
       .min(2, "First name must be longer than 2 characters")
       .max(50, "First name must be shorter than 30 characters."),
-    lastName: yup
+    sname: yup
       .string()
       .required("Last Name is required.")
       .min(2, "Last name must be longer than 2 characters")
@@ -31,7 +31,7 @@ const schema = yup
       .string()
       .required("Phone number is required")
       .matches(phoneReg, "Phone Number is not valid."),
-    accountNumber: yup
+    account: yup
       .number()
       .typeError("Input must be a number")
       .required("Account number is required")
@@ -60,13 +60,13 @@ export default function Register() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const USER_API_BASE_URL = "http://localhost:8080/api/v1/auth/register";
+  const USER_API_BASE_URL = "https://userapi-git-main-ju3tins-projects.vercel.app/api/auth/signup";
 
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({
-    firstName: "",
-    accountNumber: "",
-    lastName: "",
+    fname: "",
+    account: "",
+    sname: "",
     email: "",
     phoneNumber: "",
     password: "",
@@ -94,9 +94,9 @@ export default function Register() {
 
     // Check account number uniqueness
     const accountNumberResponse = await fetch(
-      `http://localhost:8080/api/v1/auth/user/checkAccountNumber?accountNumber=${user.accountNumber}`
+      `http://localhost:8080/api/v1/auth/user/checkAccountNumber?account=${user.account}`
     );
-    const isAccountNumberUnique = await accountNumberResponse.json();
+    const isAccountNumberUnique = await accountResponse.json();
 
     if (!isAccountNumberUnique && !isEmailUnique) {
       setAccountNumberError("Account number is already in use");
@@ -112,7 +112,7 @@ export default function Register() {
       setEmailError("Email is already in use");
       return;
     }
-    const accountNumberStr = String(user.accountNumber);
+    const accountNumberStr = String(user.account);
     if (accountNumberStr.length < 2) {
       setAccountNumberError("Account number is too short");
       return;
@@ -155,7 +155,7 @@ export default function Register() {
     const name = event.target.name;
     const value = event.target.value;
 
-    if (name === "accountNumber" && value.length === 2) {
+    if (name === "account" && value.length === 2) {
       // Generate the remaining 14 digits
       const remainingDigits = Array.from({ length: 14 }, () =>
         Math.floor(Math.random() * 10)
@@ -211,33 +211,33 @@ export default function Register() {
                   </label>
                   <div className="flex w-full  mb-3">
                     <input
-                      {...register("firstName")}
+                      {...register("fname")}
                       className="border-0 px-3 py-3 mr-3 placeholder-blueGray-300
                     text-blueGray-900 bg-white rounded text-sm shadow
                     focus:outline-none focus:ring w-1/2 ease-linear
                     transition-all duration-150"
                       placeholder="First Name"
-                      name="firstName"
-                      value={user.firstName}
+                      name="fname"
+                      value={user.fname}
                       onChange={(e) => handleChange(e)}
                     />
                     <input
-                      {...register("lastName")}
-                      name="lastName"
+                      {...register("sname")}
+                      name="sname"
                       className="border-0 px-3 py-3 mx-5 placeholder-blueGray-300
                     text-blueGray-900 bg-white rounded text-sm shadow
                     focus:outline-none focus:ring w-1/2  ease-linear
                     transition-all duration-150"
                       placeholder="Last Name"
-                      value={user.lastName}
+                      value={user.sname}
                       onChange={(e) => handleChange(e)}
                     />
                   </div>
                   <small role="alert" className="text-red-500 mb-2 mr-20 ">
-                    {errors.firstName?.message}
+                    {errors.fname?.message}
                   </small>
                   <small role="alert" className="  text-red-500 mb-2 ">
-                    {errors.lastName?.message}
+                    {errors.sname?.message}
                   </small>{" "}
                   <div className="relative w-full mb-3">
                     <label
@@ -247,17 +247,17 @@ export default function Register() {
                       Account Number
                     </label>
                     <input
-                      {...register("accountNumber")}
+                      {...register("account")}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="XX-XXXXXXXXXXXXXXXX"
-                      value={user.accountNumber}
-                      name="accountNumber"
+                      value={user.account}
+                      name="account"
                       type="number"
                       onChange={(e) => handleChange(e)}
                       maxLength={16} // Set the maximum length to 16 characters
                     />
                     <small role="alert" className="text-red-500 ">
-                      {errors.accountNumber?.message}
+                      {errors.account?.message}
                       {accountNumberError && <div>{accountNumberError}</div>}
                     </small>
                   </div>
