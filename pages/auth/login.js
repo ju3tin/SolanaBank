@@ -53,6 +53,8 @@ export default function Login() {
       const json = await res.json();
       successfulAlert();
       localStorage.setItem("token", json.accessToken);
+      console.log(json.accessToken);
+    
       router.push("/");
     } else {
       WrongCredentialsAlert();

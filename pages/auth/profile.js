@@ -14,7 +14,8 @@ export default function Settings() {
   const router = useRouter();
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const decodedToken = jwt_decode(token);
+    console.log(token);
+    const decodedToken = token;
     setDecoded(decodedToken);
   }, []);
 
@@ -58,12 +59,7 @@ export default function Settings() {
       <div className="flex flex-wrap justify-center ">
         <CardProfile profile={profile} />
       </div>{" "}
-      <CardSettings
-        userId={profile.id}
-        setResponseUser={(updatedUser) => {
-          setProfile(updatedUser);
-        }}
-      />
+   
     </>
   );
 }

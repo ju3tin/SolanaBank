@@ -14,7 +14,8 @@ export default function AdminSideBar() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const decodedToken = jwt_decode(token);
+    console.log(token);
+    const decodedToken = token;
     //const decodedToken = '0898098908';
     setDecoded(decodedToken);
   }, []);

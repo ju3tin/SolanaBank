@@ -11,7 +11,7 @@ export default function HeaderStats() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const decodedToken = jwt_decode(token);
+    const decodedToken = token;
     //const decodedToken = '0898098908';
     setDecoded(decodedToken);
     
