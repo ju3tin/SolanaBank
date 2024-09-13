@@ -37,7 +37,7 @@ export default function CheckToken() {
 
   return (
     <div>
-      <h1>Your Token</h1>
+      <h1>Your Token</h1> 
       <p>{token}</p>
     </div>
   );
