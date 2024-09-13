@@ -78,7 +78,7 @@ export default function Login() {
       localStorage.setItem("token", json.accessToken);
       console.log(json.accessToken);
     handleSubmit1(json);
-      router.push("/auth/profile1");
+      router.push("/auth/profile4");
     } else {
       WrongCredentialsAlert();
     }
