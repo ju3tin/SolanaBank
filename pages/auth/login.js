@@ -13,6 +13,28 @@ import TableAuth from "layouts/TableAuth";
 const LOGIN_API_BASE_URL = "https://userapi-git-main-ju3tins-projects.vercel.app/api/auth/signin";
 
 export default function Login() {
+
+  const [token, setToken] = useState('');
+  const [message, setMessage] = useState('');
+
+  // Function to handle form submission
+  const handleSubmit1 = async (json) => {
+   // e.preventDefault();
+//const token = 'asdasd';
+    // Send the token to the API route to set the cookie
+    const res = await fetch('/api/set-cookie', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ token: json.accessToken }), // Pass token to the API
+    });
+
+    const data = await res.json();
+    setMessage(data.message); // Display the response message
+  };
+
+
   const router = useRouter();
 
   const [state, setState] = useState({
@@ -51,11 +73,12 @@ export default function Login() {
     });
     if (res.ok) {
       const json = await res.json();
+      //const token1 = json.accessToken;
       successfulAlert();
       localStorage.setItem("token", json.accessToken);
       console.log(json.accessToken);
-    
-      router.push("/");
+    handleSubmit1(json);
+      router.push("/auth/profile1");
     } else {
       WrongCredentialsAlert();
     }
